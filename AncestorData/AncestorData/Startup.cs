@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AncestorData.EntityFramework;
+using AncestorData.JsonConverters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using Npgsql;
 
 namespace AncestorData
 {
@@ -23,7 +29,26 @@ namespace AncestorData
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConnectToDatabase(services);
             services.AddControllersWithViews();
+        }
+
+        private void ConnectToDatabase(IServiceCollection services)
+        {
+            var connectionDataFile = File.ReadAllText("secrets.json");
+            var jsonConnectionDataFile = JsonConvert.DeserializeObject<DatabaseSecretsFile>(connectionDataFile);
+
+            var builder = new NpgsqlConnectionStringBuilder()
+            {
+                Host = jsonConnectionDataFile.Host,
+                Port = jsonConnectionDataFile.Port, 
+                Database = jsonConnectionDataFile.Database, 
+                Username = jsonConnectionDataFile.Username,
+                Password = jsonConnectionDataFile.Password,
+                SslMode = SslMode.Prefer
+            };
+
+            services.AddDbContext<GenealogicBaseContext>(options => options.UseNpgsql(builder.ConnectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

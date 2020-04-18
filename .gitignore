@@ -5,3 +5,5 @@
 /AncestorData/.vs/AncestorData
 /AncestorData/AncestorData/bin/Debug/netcoreapp3.1
 /AncestorData/AncestorData/obj
+/AncestorData/AncestorData/Migrations
+/AncestorData/AncestorData/secrets.json

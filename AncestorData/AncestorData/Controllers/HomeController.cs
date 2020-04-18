@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AncestorData.Models;
+using Microsoft.EntityFrameworkCore;
+using AncestorData.EntityFramework;
 
 namespace AncestorData.Controllers
 {
@@ -13,13 +15,20 @@ namespace AncestorData.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private GenealogicBaseContext _context;
+        public HomeController(ILogger<HomeController> logger, GenealogicBaseContext context)
         {
+            _context = context;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            using (_context)
+            {
+                var user = _context.Users.Take(1).First();
+                Console.WriteLine(user);
+            }
             return View();
         }
 
