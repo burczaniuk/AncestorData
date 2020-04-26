@@ -1,22 +1,19 @@
 ﻿@{
+    Layout = "_WindowAtCenterLayout";
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="text-center">
-        <div class="container p-3 mb-2 bg-light text-dark">
-            <img src="img/cemetery.jpg" alt="" style="width:100%; opacity:0.7; z-index:-1">
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index:1; min-height:200px; background-color: cornsilk; display:grid; align-items:center" 
-                 class="border border-success text-dark">
-                <h1>Witamy!</h1>
-                <div class="container">
-                    <h2>Zaloguj się lub zarejestruj!</h2>
-                    <button type="button" class="btn btn-success" btn-lg style="padding:20px; border-radius:10px;"
-                        onclick="location.href='@Url.Action("Account","Login")'">Zaloguj się</button>
-                    <label style="padding-right:40px;"></label>
-                    <button type="button" class="btn btn-warning" btn-lg style="padding:20px; border-radius:10px;"
-                        onclick="location.href='@Url.Action("Account","Register")'">Zarejestruj</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <small>Photo by Annie Spratt on Unsplash</small>
+
+<h1>Witamy!</h1>
+<div class="container">
+    <h2>Zaloguj się lub zarejestruj!</h2>
+    <button type="button" class="btn btn-success" btn-lg style="padding:20px; border-radius:10px;"
+            onclick="location.href='@Url.Action("Login","Account")'">
+        Zaloguj się
+    </button>
+    <label style="padding-right:40px;"></label>
+    <button type="button" class="btn btn-warning" btn-lg style="padding:20px; border-radius:10px;"
+            onclick="location.href='@Url.Action("Register","Account")'">
+        Zarejestruj
+    </button>
+</div>
