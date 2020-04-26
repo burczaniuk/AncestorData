@@ -14,9 +14,11 @@ namespace AncestorData.Controllers
         }
 
         [HttpGet()]
-        public IActionResult Login()
+        public IActionResult Login(string address="")
         {
-            return View();
+            var model = new Models.Authentication.LoginModel();
+            model.PreviousPage = address;
+            return View(model);
         }
 
         [HttpGet]

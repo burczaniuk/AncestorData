@@ -1,8 +1,41 @@
 ﻿
 @{
     Layout = "_WindowAtCenterLayout";
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Zarejestruj się";
 }
 
-<h1>Register</h1>
+@model AncestorData.Models.Authentication.RegisterModel
+
+<style>
+    td {
+        padding: 0 15px;
+    }
+</style>
+<h2>Zarejestruj się</h2>
+<form method="post" asp-controller="Account" asp-action="Register" style="padding-left:15px;">
+    <table style="position:center; max-width:450px;">
+        <tr>
+            <td><b><label asp-for="Username"></label></b></td>
+            <td><input asp-for="Username" /></td>
+            <td><span asp-validation-for="Username"></span></td>
+        </tr>
+        <tr>
+            <td><b><label asp-for="Email"></label></b></td>
+            <td><input asp-for="Email" /></td>
+            <td><span asp-validation-for="Email"></span></td>
+        </tr>
+        <tr>
+            <td><b><label asp-for="Password"></label></b></td>
+            <td><input asp-for="Password" /></td>
+            <td><span asp-validation-for="Password"></span></td>
+        </tr>
+        <tr>
+            <td><b><label asp-for="DuplicatedPassword"></label></b></td>
+            <td><input asp-for="DuplicatedPassword" /></td>
+            <td><span asp-validation-for="DuplicatedPassword"></span></td>
+        </tr>
+    </table>
+    <br />
+    <input type="submit" class="btn btn-success" btn-lg value="Zarejestruj się" />
+</form>
 

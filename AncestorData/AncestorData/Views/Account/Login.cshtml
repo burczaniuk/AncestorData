@@ -1,8 +1,32 @@
 ﻿
 @{
     Layout = "_WindowAtCenterLayout";
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Zaloguj się";
 }
 
-<h1>Login</h1>
+@model AncestorData.Models.Authentication.LoginModel
+
+<style>
+    td {padding: 0 15px;}
+</style>
+<h2>Zaloguj się</h2>
+<form method="post" asp-controller="Account" asp-action="Login" asp-route-previousurl="@Model.PreviousPage" style="padding-left:15px;">
+    <table style="position:center; max-width:450px;">
+        <tr>
+            <td><b><label asp-for="EmailAddress"></label></b></td>
+            <td><input asp-for="EmailAddress" /></td>
+            <td><span asp-validation-for="EmailAddress"></span></td>
+        </tr>
+        <tr>
+            <td><b><label asp-for="Password"></label></b></td>
+            <td><input asp-for="Password" /></td>
+            <td><span asp-validation-for="Password"></span></td>
+        </tr>
+    </table>
+    <div>
+        <label asp-for="IfRemember"></label>
+        <input asp-for="IfRemember" type="checkbox" />
+    </div>
+    <input type="submit" class="btn btn-success" btn-lg value="Zaloguj się" />
+</form>
 
