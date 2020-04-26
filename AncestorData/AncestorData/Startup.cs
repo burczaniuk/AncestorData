@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using AncestorData.EntityFramework;
 using AncestorData.JsonConverters;
+using AncestorData.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +33,7 @@ namespace AncestorData
         {
             ConnectToDatabase(services);
             services.AddControllersWithViews();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<GenealogicBaseContext>();
         }
 
         private void ConnectToDatabase(IServiceCollection services)

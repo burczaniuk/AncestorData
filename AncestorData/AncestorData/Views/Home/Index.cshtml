@@ -10,9 +10,11 @@
                 <h1>Witamy!</h1>
                 <div class="container">
                     <h2>Zaloguj się lub zarejestruj!</h2>
-                    <button type="button" class="btn btn-success" btn-lg style="padding:20px; border-radius:10px;">Zaloguj się</button>
+                    <button type="button" class="btn btn-success" btn-lg style="padding:20px; border-radius:10px;"
+                        onclick="location.href='@Url.Action("Account","Login")'">Zaloguj się</button>
                     <label style="padding-right:40px;"></label>
-                    <button type="button" class="btn btn-warning" btn-lg style="padding:20px; border-radius:10px;">Zarejestruj</button>
+                    <button type="button" class="btn btn-warning" btn-lg style="padding:20px; border-radius:10px;"
+                        onclick="location.href='@Url.Action("Account","Register")'">Zarejestruj</button>
                 </div>
             </div>
         </div>
